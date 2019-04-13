@@ -1,6 +1,7 @@
 package com.mutants.dna.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +32,7 @@ public class DnaController {
 		if(dnaService.isMutant(dnaDto.getDna())) {
 			return ResponseEntity.ok().build();
 		}
-		return ResponseEntity.status(403).build();
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 	}
 	
 }

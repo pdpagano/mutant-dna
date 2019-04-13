@@ -38,7 +38,7 @@ public class DnaValidator implements Validator {
 
 		int matrixOrderY = dnaChains.length;
 
-		if (matrixOrderY < 3) {
+		if (matrixOrderY <= 3) {
 			errors.rejectValue("dna", "matrixError", "The matrix order is smaller than the minimun size");
 			return;
 		}
@@ -54,7 +54,7 @@ public class DnaValidator implements Validator {
 
 			matcher.reset(dna);
 			if (matcher.find()) {
-				errors.rejectValue("dna", "matrixError", "The matrix has invalid data");
+				errors.rejectValue("dna", "matrixError", "The matrix has invalid data. Not valid DNA.");
 				return;
 			}
 		}
