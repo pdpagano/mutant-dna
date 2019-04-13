@@ -1,10 +1,14 @@
 package com.mutants.dna.service.impl;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mutants.dna.domain.Dna;
+import com.mutants.dna.repository.DnaRepository;
 import com.mutants.dna.service.DnaService;
 
 @Service
@@ -12,6 +16,9 @@ public class DnaServiceImpl implements DnaService {
 	
 	private static final Pattern pattern = Pattern.compile("(?:A{4})|(?:T{4})|(?:C{4})|(?:G{4})");
 	private static final int BOUNDARY_COUNT = 2;
+	
+	@Autowired
+	DnaRepository dnaRepository;
 
 	@Override
 	public boolean isMutant(String[] dnaChains) {
@@ -142,6 +149,22 @@ public class DnaServiceImpl implements DnaService {
 
 		return matches;
 
+	}
+
+	@Override
+	public Dna findDna(Dna dna) {
+		if(Objects.isNull(dna)) {
+			return null;
+		}
+		return dnaRepository.findByDna(dna.getDna());
+	}
+
+	@Override
+	public Dna saveDna(Dna dna) {
+		if(Objects.isNull(dna)) {
+			return null;
+		}
+		return dnaRepository.save(dna);
 	}
 
 }
