@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mutants.dna.domain.Dna;
 import com.mutants.dna.dto.DnaDto;
+import com.mutants.dna.dto.DtoStats;
 import com.mutants.dna.enumeration.DnaType;
 import com.mutants.dna.service.DnaService;
 import com.mutants.dna.validator.DnaValidator;
@@ -53,6 +54,12 @@ public class DnaController {
 
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 
+	}
+
+	@RequestMapping(value = "/stats", method = RequestMethod.GET)
+	public ResponseEntity<?> getStats() {
+		DtoStats dtoStats = dnaService.calculateStats();
+		return ResponseEntity.ok(dtoStats);
 	}
 
 }

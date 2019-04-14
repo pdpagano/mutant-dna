@@ -8,15 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mutants.dna.domain.Dna;
+import com.mutants.dna.dto.DtoStats;
+import com.mutants.dna.enumeration.DnaType;
 import com.mutants.dna.repository.DnaRepository;
 import com.mutants.dna.service.DnaService;
 
 @Service
 public class DnaServiceImpl implements DnaService {
-	
+
 	private static final Pattern pattern = Pattern.compile("(?:A{4})|(?:T{4})|(?:C{4})|(?:G{4})");
 	private static final int BOUNDARY_COUNT = 2;
-	
+
 	@Autowired
 	DnaRepository dnaRepository;
 
@@ -153,7 +155,7 @@ public class DnaServiceImpl implements DnaService {
 
 	@Override
 	public Dna findDna(Dna dna) {
-		if(Objects.isNull(dna)) {
+		if (Objects.isNull(dna)) {
 			return null;
 		}
 		return dnaRepository.findByDna(dna.getDna());
@@ -161,10 +163,18 @@ public class DnaServiceImpl implements DnaService {
 
 	@Override
 	public Dna saveDna(Dna dna) {
-		if(Objects.isNull(dna)) {
+		if (Objects.isNull(dna)) {
 			return null;
 		}
 		return dnaRepository.save(dna);
+	}
+
+	@Override
+	public DtoStats calculateStats() {
+		int mutantCount = dnaRepository.countByDnaType(DnaType.MUTANT);
+		int humanCount = dnaRepository.countByDnaType(DnaType.HUMAN);
+		float ratio = humanCount == 0 ? 0 : mutantCount / (float) humanCount;
+		return new DtoStats(mutantCount, humanCount, ratio);
 	}
 
 }
