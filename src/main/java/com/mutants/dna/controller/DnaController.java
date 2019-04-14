@@ -14,7 +14,7 @@ import com.mutants.dna.service.DnaService;
 import com.mutants.dna.validator.DnaValidator;
 
 @RestController
-@RequestMapping("dna-chains")
+@RequestMapping("dnachains")
 public class DnaController {
 	
 	@Autowired
