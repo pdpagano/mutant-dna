@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mutants.dna.domain.Dna;
-import com.mutants.dna.dto.DtoStats;
+import com.mutants.dna.dto.StatsDto;
 import com.mutants.dna.enumeration.DnaType;
 import com.mutants.dna.repository.DnaRepository;
 import com.mutants.dna.service.DnaService;
@@ -170,11 +170,11 @@ public class DnaServiceImpl implements DnaService {
 	}
 
 	@Override
-	public DtoStats calculateStats() {
+	public StatsDto calculateStats() {
 		int mutantCount = dnaRepository.countByDnaType(DnaType.MUTANT);
 		int humanCount = dnaRepository.countByDnaType(DnaType.HUMAN);
 		float ratio = humanCount == 0 ? 0 : mutantCount / (float) humanCount;
-		return new DtoStats(mutantCount, humanCount, ratio);
+		return new StatsDto(mutantCount, humanCount, ratio);
 	}
 
 }

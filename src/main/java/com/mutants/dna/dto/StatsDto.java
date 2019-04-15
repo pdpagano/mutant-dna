@@ -1,21 +1,24 @@
 package com.mutants.dna.dto;
 
-public class DtoStats {
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class StatsDto {
 
 	private int countMutantDna;
 	private int countHumanDna;
 	private float ratio;
 
-	public DtoStats() {
+	public StatsDto() {
 	}
 
-	public DtoStats(int countMutantDna, int countHumanDna, float ratio) {
+	public StatsDto(int countMutantDna, int countHumanDna, float ratio) {
 		super();
 		this.countMutantDna = countMutantDna;
 		this.countHumanDna = countHumanDna;
 		this.ratio = ratio;
 	}
 
+	@JsonProperty("count_mutant_dna")
 	public int getCountMutantDna() {
 		return countMutantDna;
 	}
@@ -24,6 +27,7 @@ public class DtoStats {
 		this.countMutantDna = countMutantDna;
 	}
 
+	@JsonProperty("count_human_dna")
 	public int getCountHumanDna() {
 		return countHumanDna;
 	}
