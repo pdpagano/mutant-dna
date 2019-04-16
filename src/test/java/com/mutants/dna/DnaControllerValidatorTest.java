@@ -22,7 +22,7 @@ import com.mutants.dna.validator.DnaValidator;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(DnaController.class)
-public class DnaControllerValidatorIT {
+public class DnaControllerValidatorTest {
 
 	@TestConfiguration
 	static class contextConfiguration {
