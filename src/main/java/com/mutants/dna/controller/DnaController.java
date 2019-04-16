@@ -18,6 +18,10 @@ import com.mutants.dna.enumeration.DnaType;
 import com.mutants.dna.service.DnaService;
 import com.mutants.dna.validator.DnaValidator;
 
+/**
+ * @author pdpagano@gmail.com
+ *
+ */
 @RestController
 @RequestMapping("dnachains")
 public class DnaController {

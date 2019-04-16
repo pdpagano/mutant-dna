@@ -166,5 +166,12 @@ public class DnaServiceTest {
 		boolean result = dnaService.isMutant(dnaChains);
 		Assert.assertTrue(result);
 	}
+	
+	@Test
+	public void ShouldReturnTrueWhenDnaIsMutantByMixDirections() {
+		String[] dnaChains = {"AAAAG","ATAGA","GTGCG","TGAGA","AGGTC"};
+		boolean result = dnaService.isMutant(dnaChains);
+		Assert.assertTrue(result);
+	}
 
 }
