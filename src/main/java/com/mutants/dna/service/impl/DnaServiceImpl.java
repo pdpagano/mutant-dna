@@ -13,6 +13,12 @@ import com.mutants.dna.enumeration.DnaType;
 import com.mutants.dna.repository.DnaRepository;
 import com.mutants.dna.service.DnaService;
 
+/**
+ * Service used for calculate if a matrix has two or more sequences with four equals letters.
+ * And for calculate the stats about the analysis. 
+ * @author pdpag
+ *
+ */
 @Service
 public class DnaServiceImpl implements DnaService {
 

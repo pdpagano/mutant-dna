@@ -26,8 +26,9 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 /**
+ * This controller is the main controller of the api
+ * It is use for detect mutants and for get stats about the analysis
  * @author pdpagano@gmail.com
- *
  */
 @RestController
 @RequestMapping("dnachains")
@@ -40,6 +41,13 @@ public class DnaController {
 	@Autowired
 	private DnaService dnaService;
 
+	/**
+	 * Recives a dnaDto (basically a String array) that contains the DNA chains
+	 * And validate if the DNA belongs to a mutant or a human
+	 * 
+	 * @param dnaDto
+	 * @return
+	 */
 	@ApiOperation(value = "Determines if a given DNA belongs to a human or a mutant.")
 	@ApiResponses(value = {
 	        @ApiResponse(code = 200, message = "You have detected a mutant!"),
@@ -74,6 +82,11 @@ public class DnaController {
 
 	}
 
+	/**
+	 * Returns statistics about the different DNA that have been analysed
+	 * 
+	 * @return
+	 */
 	@ApiOperation(value = "Returns statistics about the different DNA that have been analysed")
 	@ApiResponses(value = {
 	        @ApiResponse(code = 200, message = "statistics calculated and returned")
